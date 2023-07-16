@@ -1,16 +1,17 @@
-package br.com.main;
+package br.com.util;
 
 import org.hibernate.Session;
-
-import br.com.util.HibernateUtil;
+import org.junit.Test;
 
 public class HibernateUtilTest {
 	
-	public static void main(String[] args) {
+	@Test
+	public void conectar(){
 		Session sessao = HibernateUtil.getFabricaSessoes().openSession();
 		
 		sessao.close();
 		HibernateUtil.getFabricaSessoes().close();
 	}
+	
 
 }
