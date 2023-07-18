@@ -29,9 +29,19 @@
         <property name="show_sql">true</property>
 
         <!-- Drop and re-create the database schema on startup -->
-        <property name="hbm2ddl.auto">create</property>
+        <property name="hbm2ddl.auto">validate</property>
         
+        <mapping class="br.com.domain.Cidade" />
+        <mapping class="br.com.domain.Cliente" />
 		<mapping class="br.com.domain.Estado" />
+		<mapping class="br.com.domain.Fabricante" />
+		<mapping class="br.com.domain.Funcionario" />
+		<mapping class="br.com.domain.ItemVenda" />
+		<mapping class="br.com.domain.Produto" />
+		<mapping class="br.com.domain.Pessoa" />
+		<mapping class="br.com.domain.Venda" />
+		<mapping class="br.com.domain.Usuario" />
+		
 
     </session-factory>
 
