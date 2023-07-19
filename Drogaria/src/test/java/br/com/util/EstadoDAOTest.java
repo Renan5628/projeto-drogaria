@@ -5,8 +5,10 @@ import java.util.List;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import br.com.dao.CidadeDAO;
 import br.com.dao.EstadoDAO;
 import br.com.dao.FabricanteDAO;
+import br.com.domain.Cidade;
 import br.com.domain.Estado;
 import br.com.domain.Fabricante;
 
@@ -14,7 +16,7 @@ public class EstadoDAOTest {
 	
 	@Test
 	@Ignore
-	public void salvarTeste(){
+	public void salvarEstado(){
 		Estado estado = new Estado();
 		
 		estado.setNome("Rio Grande do Sul");
@@ -28,7 +30,7 @@ public class EstadoDAOTest {
 	
 	@Test
 	@Ignore
-	public void listarTeste(){
+	public void listarEstado(){
 		EstadoDAO estadoDAO = new EstadoDAO();
 		List<Estado> estados = estadoDAO.listar();
 		
@@ -40,7 +42,7 @@ public class EstadoDAOTest {
 	
 	@Test
 	@Ignore
-	public void buscarTeste(){
+	public void buscarEstado(){
 		EstadoDAO estadoDAO = new EstadoDAO();
 		Estado estado = estadoDAO.buscar(3l);
 		
@@ -51,21 +53,20 @@ public class EstadoDAOTest {
 	
 	@Test
 	@Ignore
-	public void excluirTeste(){
+	public void excluirEstado(){
 		
 		EstadoDAO estadoDAO = new EstadoDAO();
-		
 		Estado estado = estadoDAO.buscar(3l);
+		
 		estadoDAO.excluir(estado);
 		
 		System.out.println(estado.getNome());
 		
-		
 	}
 	
 	@Test
 	@Ignore
-	public void editarTeste(){
+	public void editarEstado(){
 		
 		EstadoDAO estadoDAO = new EstadoDAO();
 		Estado estado = estadoDAO.buscar(3l);
@@ -79,7 +80,8 @@ public class EstadoDAOTest {
 	}
 	
 	@Test
-	public void salvarTesteFabricante(){
+	@Ignore
+	public void salvarFabricante(){
 		Fabricante fabricante = new Fabricante();
 		FabricanteDAO fabricanteDAO = new FabricanteDAO();
 		
@@ -88,5 +90,71 @@ public class EstadoDAOTest {
 		fabricanteDAO.salvar(fabricante);
 		
 	}
+	
+	@Test
+	@Ignore
+	public void salvarCidade(){
+		
+		CidadeDAO cidadeDAO = new CidadeDAO();
+		Cidade cidade = new Cidade();
+		EstadoDAO estadoDAO = new EstadoDAO();
+		Estado estado = new Estado();
+		
+		estado = estadoDAO.buscar(1l);
+		cidade.setNome("Itapira");
+		cidade.setEstado(estado);
+		
+		cidadeDAO.salvar(cidade);
+		
+	}
+	
+	@Test
+	@Ignore
+	public void listarCidade(){
+		CidadeDAO cidadeDAO = new CidadeDAO();
+		List<Cidade> cidades = cidadeDAO.listar();
+		
+		System.out.println(cidades.size());
+		
+	}
+	
+	@Test
+	@Ignore
+	public void buscarCidade(){
+		Cidade cidade = new CidadeDAO().buscar(1l);
+		System.out.println(cidade.getNome());
+	}
+	
+	@Test
+	@Ignore
+	public void excluirCidade(){
+		Long codigo = 4l;
+		
+		CidadeDAO cidadeDAO = new CidadeDAO();
+		Cidade cidade = new Cidade();
+		
+		cidade = cidadeDAO.buscar(codigo);
+		cidadeDAO.excluir(cidade);
+		
+	}
+	
+	@Test
+	public void editarCidade(){
+		
+		Long codigo = 2l;
+		
+		CidadeDAO cidadeDAO = new CidadeDAO();
+		Cidade cidade = new Cidade();
+		
+		cidade = cidadeDAO.buscar(codigo);
+		cidade.setNome("Andradas");
+		cidade.setEstado(new EstadoDAO().buscar(3l));
+		
+		cidadeDAO.editar(cidade);
+		
+		
+	}
+	
+	
 
 }
