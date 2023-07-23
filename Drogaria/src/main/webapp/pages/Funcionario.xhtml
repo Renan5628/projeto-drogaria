@@ -7,12 +7,12 @@
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Produtos</title>
+	<title>Funcionário</title>
 </h:head>
 <h:body>
 
 	<h:form>
-		<p:panel header="Produtos - Listagem">
+		<p:panel header="Funcionários - Listagem">
 			<p:dataTable emptyMessage="Nenhum registro encontrado."
 				paginator="true">
 
@@ -20,18 +20,12 @@
 					<p:commandButton value="Novo" oncomplete="PF('dialogo').show();" />
 				</f:facet>
 
-				<p:column headerText="Descrição">
+				<p:column headerText="Carteira de Trabalho">
 				</p:column>
 
-				<p:column headerText="Quantidade">
+				<p:column headerText="Data de Admissão">
 				</p:column>
 
-				<p:column headerText="Preço">
-				</p:column>
-				
-				<p:column headerText="Fabricante">
-				</p:column>
-				
 				<p:column headerText="Opções">
 				</p:column>
 
@@ -39,24 +33,20 @@
 		</p:panel>
 	</h:form>
 
-		<p:dialog header="Produtos - Cadastro" widgetVar="dialogo"
+		<p:dialog header="Funcionários - Cadastro" widgetVar="dialogo"
 			draggable="false" resizable="false" modal="true" closable="false">
 			<h:form>
 			<h:panelGrid columns="2">
-				<p:outputLabel value="Descrição:" />
-				<p:inputText maxlength="50" size="30" />
+				<p:outputLabel value="Carteira de Trabalho:" />
+				<p:inputText maxlength="15" size="30" />
+				
+				<p:outputLabel value="Data Admissão:" />
+				<p:calendar/>
 
-				<p:outputLabel value="Quantidade:" />
-				<p:inputText maxlength="5" size="10" />
-				
-				<p:outputLabel value="Preço:" />
-				<p:inputText maxlength="7" size="10" />
-				
-				<p:outputLabel value="Fabricante:" />
+				<p:outputLabel value="Pessoa:" />
 				<p:selectOneMenu filter="true">
-					<f:selectItem itemValue="" itemLabel="Selecione o fabricante" />
+					<f:selectItem itemValue="" itemLabel="Selecione uma pessoa" />
 				</p:selectOneMenu>
-				
 			</h:panelGrid>
 			
 			<h:panelGrid columns="2">

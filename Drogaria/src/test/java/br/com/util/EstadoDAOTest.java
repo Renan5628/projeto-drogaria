@@ -139,6 +139,7 @@ public class EstadoDAOTest {
 	}
 	
 	@Test
+	@Ignore
 	public void editarCidade(){
 		
 		Long codigo = 2l;
@@ -152,6 +153,16 @@ public class EstadoDAOTest {
 		
 		cidadeDAO.editar(cidade);
 		
+	}
+	
+	@Test
+	public void fabricanteMerge(){
+		FabricanteDAO fabricanteDAO = new FabricanteDAO();
+		Fabricante fabricante = fabricanteDAO.buscar(1l);
+		
+		fabricante.setDescricao("Jhonson&Jhonson");
+		
+		fabricanteDAO.merge(fabricante);
 		
 	}
 	

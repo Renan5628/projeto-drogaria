@@ -7,12 +7,12 @@
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Fabricante</title>
+	<title>Usuário</title>
 </h:head>
 <h:body>
 
 	<h:form>
-		<p:panel header="Fabricantes - Listagem">
+		<p:panel header="Usuários - Listagem">
 			<p:dataTable emptyMessage="Nenhum registro encontrado."
 				paginator="true">
 
@@ -20,9 +20,18 @@
 					<p:commandButton value="Novo" oncomplete="PF('dialogo').show();" />
 				</f:facet>
 
-				<p:column headerText="Descrição">
+				<p:column headerText="Nome">
 				</p:column>
 
+				<p:column headerText="CPF">
+				</p:column>
+
+				<p:column headerText="Tipo">
+				</p:column>
+				
+				<p:column headerText="Ativo">
+				</p:column>
+				
 				<p:column headerText="Opções">
 				</p:column>
 
@@ -30,12 +39,31 @@
 		</p:panel>
 	</h:form>
 
-		<p:dialog header="Fabricantes - Cadastro" widgetVar="dialogo"
+		<p:dialog header="Usuários - Cadastro" widgetVar="dialogo"
 			draggable="false" resizable="false" modal="true" closable="false">
 			<h:form>
 			<h:panelGrid columns="2">
-				<p:outputLabel value="Descrição:" />
-				<p:inputText maxlength="50" size="30" />
+
+				<p:outputLabel value="Pessoa:" />
+				<p:selectOneMenu filter="true">
+					<f:selectItem itemValue="" itemLabel="Selecione uma pessoa" />
+				</p:selectOneMenu>
+				
+				<p:outputLabel value="Senha:" />
+				<p:password maxlength="8" size="10" />
+				
+				<p:outputLabel value="Tipo:" />
+				
+				<p:selectOneRadio>
+					<f:selectItem itemValue="A" itemLabel="Administrador" />
+					<f:selectItem itemValue="G" itemLabel="Gerente" />
+					<f:selectItem itemValue="B" itemLabel="Balconista" />
+				</p:selectOneRadio>
+				
+				<p:outputLabel value="Ativo:" />
+				<p:selectBooleanCheckbox/>
+				
+				
 				
 			</h:panelGrid>
 			
