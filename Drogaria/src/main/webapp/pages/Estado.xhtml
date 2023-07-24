@@ -13,11 +13,11 @@
 
 	<p:growl id="mensagem" />
 
-	<h:form>
+	<h:form id="formListagem">
 		<p:panel header="Estados - Listagem">
 		
 		
-			<p:dataTable  emptyMessage="Nenhum registro encontrado." value="#{estadoBean.estados}" var="estado" rows="3"
+			<p:dataTable id="tabela" emptyMessage="Nenhum registro encontrado." value="#{estadoBean.estados}" var="estado" rows="3"
 				paginator="true">
 
 				<f:facet name="header">
@@ -33,8 +33,15 @@
 				</p:column>
 
 				<p:column headerText="Opções">
-						<p:commandButton icon="ui-icon-trash">
-							<p:confirm header="Confirmação" message="Deseja excluir o estado?" icon="ui-icon-alert" />
+				
+						<p:commandButton icon="ui-icon-trash" actionListener="#{estadoBean.excluir}" update=":mensagem :formListagem:tabela"  >
+							<p:confirm header="Confirmação" message="Deseja excluir o estado?" icon="ui-icon-alert"  />
+							<f:attribute name="estadoSelecionado" value="#{estado}" />
+						</p:commandButton>
+						
+						
+						<p:commandButton icon="ui-icon-pencil" actionListener="#{estadoBean.editar}" update=":formCadastro:painel" oncomplete="PF('dialogo').show();">
+							<f:attribute name="estadoSelecionado" value="#{estado}" />
 						</p:commandButton>
 				</p:column>
 			</p:dataTable>
@@ -60,7 +67,7 @@
 			</h:panelGrid>
 			
 			<h:panelGrid columns="2">
-				<p:commandButton value="Salvar" actionListener="#{estadoBean.salvar}" update=":mensagem :formCadastro:painel" />
+				<p:commandButton value="Salvar" actionListener="#{estadoBean.salvar}" update=":mensagem :formCadastro:painel :formListagem:tabela" />
 				<p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();" />
 			</h:panelGrid>
 			

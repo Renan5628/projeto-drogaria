@@ -100,8 +100,8 @@ public class EstadoDAOTest {
 		EstadoDAO estadoDAO = new EstadoDAO();
 		Estado estado = new Estado();
 		
-		estado = estadoDAO.buscar(1l);
-		cidade.setNome("Itapira");
+		estado = estadoDAO.buscar(6l);
+		cidade.setNome("Gramado");
 		cidade.setEstado(estado);
 		
 		cidadeDAO.salvar(cidade);
@@ -156,6 +156,7 @@ public class EstadoDAOTest {
 	}
 	
 	@Test
+	@Ignore
 	public void fabricanteMerge(){
 		FabricanteDAO fabricanteDAO = new FabricanteDAO();
 		Fabricante fabricante = fabricanteDAO.buscar(1l);
