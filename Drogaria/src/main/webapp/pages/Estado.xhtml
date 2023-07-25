@@ -21,7 +21,9 @@
 				paginator="true">
 
 				<f:facet name="header">
-					<p:commandButton value="Novo" actionListener="#{estadoBean.novo}" update=":formCadastro:painel" oncomplete="PF('dialogo').show();" />
+					<p:commandButton value="Novo" actionListener="#{estadoBean.novo}" update=":formCadastro:painel" oncomplete="PF('dialogo').show();">
+						<f:actionListener type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+					</p:commandButton>
 				</f:facet>
 
 				<p:column headerText="Nome" filterBy="#{estado.nome}" sortBy="#{estado.nome}">
@@ -40,8 +42,9 @@
 						</p:commandButton>
 						
 						
-						<p:commandButton icon="ui-icon-pencil" actionListener="#{estadoBean.editar}" update=":formCadastro:painel" oncomplete="PF('dialogo').show();">
+						<p:commandButton icon="ui-icon-pencil" actionListener="#{estadoBean.editar}" update=":formCadastro:painel :mensagem " oncomplete="PF('dialogo').show();">
 							<f:attribute name="estadoSelecionado" value="#{estado}" />
+							<f:actionListener type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
 						</p:commandButton>
 				</p:column>
 			</p:dataTable>
@@ -59,11 +62,11 @@
 			draggable="false" resizable="false" modal="true" closable="false">
 			<h:form id="formCadastro">
 			<h:panelGrid id="painel" columns="2">
-				<p:outputLabel value="Nome:" />
-				<p:inputText maxlength="50" size="30" value="#{estadoBean.estado.nome}" />
+				<p:outputLabel for="nome" value="Nome:" />
+				<p:inputText id="nome" maxlength="50" size="30" value="#{estadoBean.estado.nome}" required="true" requiredMessage="O campo 'Nome' é obrigatório." />
 
-				<p:outputLabel value="Sigla:" />
-				<p:inputText maxlength="2" size="10" value="#{estadoBean.estado.sigla}" />
+				<p:outputLabel for="sigla" value="Sigla:" />
+				<p:inputText id="sigla" maxlength="2" size="10" value="#{estadoBean.estado.sigla}" required="true" requiredMessage="O campo 'Sigla' é obrigatório."/>
 			</h:panelGrid>
 			
 			<h:panelGrid columns="2">
