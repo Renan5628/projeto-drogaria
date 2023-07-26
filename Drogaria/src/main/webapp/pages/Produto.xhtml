@@ -34,7 +34,9 @@
 				</p:column>
 
 				<p:column headerText="Preço">
-					<h:outputText value="#{produto.preco}" />
+					<h:outputText value="#{produto.preco}" > 
+						<f:convertNumber locale="pt_BR" minIntegerDigits="2"/>
+					</h:outputText>
 				</p:column>
 
 				<p:column headerText="Fabricante">
@@ -97,6 +99,7 @@
 					converterMessage="Informe um valor válido para o campo 'Preço''" 
 					validatorMessage="Informe um valor entre 0.01 e 9999.99 para o campo 'Preço'." >
 					<f:validateDoubleRange minimum="0.01" maximum="9999.99" />
+					<f:convertNumber locale="pt_BR" minIntegerDigits="2"/>
 					</p:inputText>
 
 				<p:outputLabel value="Fabricante:" />
