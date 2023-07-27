@@ -12,6 +12,7 @@ import org.omnifaces.util.Messages;
 
 import br.com.dao.FabricanteDAO;
 import br.com.dao.ProdutoDAO;
+import br.com.domain.Estado;
 import br.com.domain.Fabricante;
 import br.com.domain.Produto;
 
@@ -46,6 +47,7 @@ public class ProdutoBean implements Serializable {
 	public void setFabricantes(List<Fabricante> fabricantes) {
 		this.fabricantes = fabricantes;
 	}
+
 
 	@PostConstruct
 	public void listar() {

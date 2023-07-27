@@ -21,7 +21,6 @@ import br.com.domain.Estado;
 public class CidadeBean implements Serializable {
 	
 	private Cidade cidade;
-	private Estado estado;
 	private List<Cidade> cidades;
 	private List<Estado> estados;
 
@@ -48,6 +47,7 @@ public class CidadeBean implements Serializable {
 	public void setEstados(List<Estado> estados) {
 		this.estados = estados;
 	}
+	
 
 	@PostConstruct
 	public void listar(){
@@ -103,7 +103,7 @@ public class CidadeBean implements Serializable {
 			cidade = new Cidade();
 			
 			EstadoDAO estadoDAO = new EstadoDAO();
-			estados = estadoDAO.listar();
+			estados = estadoDAO.listar("nome");
 			
 		} catch (RuntimeException e) {
 			Messages.addGlobalError("Ocorreu um erro ao gerar uma nova cidade.");
@@ -128,5 +128,7 @@ public class CidadeBean implements Serializable {
 		
 		
 	}
+
+	
 	
 }

@@ -85,7 +85,7 @@ public class EstadoDAOTest {
 		Fabricante fabricante = new Fabricante();
 		FabricanteDAO fabricanteDAO = new FabricanteDAO();
 		
-		fabricante.setDescricao("Pfizer");
+		fabricante.setDescricao("Aché");
 		
 		fabricanteDAO.salvar(fabricante);
 		

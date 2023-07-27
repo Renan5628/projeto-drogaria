@@ -78,24 +78,25 @@
 				<p:inputText id="rg" />
 
 				<p:outputLabel for="cpf" value="CPF:" />
-				<p:inputText id="cpf" />
+				<p:inputMask mask="999.999.999-99" id="cpf" size="10" value="#{pessoaBean.pessoa.cpf}" required="true" requiredMessage="O campo 'CPF' é obrigatório." />
 
 				<p:outputLabel for="estado" value="Estado:" />
 				<p:selectOneMenu id="estado" filter="true"
-					converter="omnifaces.SelectItemsConverter" required="true"
-					requiredMessage="O campo 'Estado' é obrigatório">
+					converter="omnifaces.SelectItemsConverter"
+					value="#{pessoaBean.estado}">
+					
 					<f:selectItem noSelectionOption="true"
 						itemLabel="Selecione um estado" />
 					<f:selectItems value="#{pessoaBean.estados}" var="estado"
 						itemValue="#{estado}" itemLabel="#{estado.nome}" />
+						<p:ajax listener="#{pessoaBean.popular}" update=":formCadastro:cidade"/>
 				</p:selectOneMenu>
 
 				<p:outputLabel for="cidade" value="Cidade:" />
 				<p:selectOneMenu id="cidade" filter="true" required="true"
 					requiredMessage="O campo 'Cidade' é obrigatório"
-					converter="omnifaces.SelectItemsConverter">
-					<f:selectItem noSelectionOption="true"
-						itemLabel="Selecione uma cidade" />
+					converter="omnifaces.SelectItemsConverter" value="#{pessoaBean.pessoa.cidade}" >
+					<f:selectItem noSelectionOption="true" itemLabel="Selecione uma cidade" />
 					<f:selectItems value="#{pessoaBean.cidades}" var="cidade"
 						itemValue="#{cidade}" itemLabel="#{cidade.nome}" />
 				</p:selectOneMenu>
@@ -127,10 +128,10 @@
 					value="#{pessoaBean.pessoa.complemento}" />
 
 				<p:outputLabel for="telefone" value="Telefone:" />
-				<p:inputText id="telefone" />
+				<p:inputMask id="telefone" mask="(99)99999-9999" />
 
 				<p:outputLabel for="celular" value="Celular:" />
-				<p:inputText id="celular" />
+				<p:inputMask id="celular" mask="(99)99999-9999"/>
 
 				<p:outputLabel for="email" value="Email:" />
 				<p:inputText id="email" maxlength="100" size="50"

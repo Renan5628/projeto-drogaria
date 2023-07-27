@@ -6,6 +6,7 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 import br.com.util.HibernateUtil;
@@ -49,6 +50,25 @@ public class GenericDAO<E> {
 		
 		try {
 			Criteria consulta = sessao.createCriteria(entity);
+			List<E> resultado = consulta.list();
+			return resultado;
+			
+		} catch (Exception e) {
+			throw e;
+			
+		}finally {
+			sessao.close();
+		}
+		
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<E> listar(String campoOrdenação){
+		Session sessao = HibernateUtil.getFabricaSessoes().openSession();
+		
+		try {
+			Criteria consulta = sessao.createCriteria(entity);
+			consulta.addOrder(Order.asc(campoOrdenação));
 			List<E> resultado = consulta.list();
 			return resultado;
 			
