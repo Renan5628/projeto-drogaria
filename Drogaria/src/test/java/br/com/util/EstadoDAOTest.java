@@ -1,16 +1,23 @@
 package br.com.util;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Ignore;
 import org.junit.Test;
 
 import br.com.dao.CidadeDAO;
+import br.com.dao.ClienteDAO;
 import br.com.dao.EstadoDAO;
 import br.com.dao.FabricanteDAO;
+import br.com.dao.PessoaDAO;
 import br.com.domain.Cidade;
+import br.com.domain.Cliente;
 import br.com.domain.Estado;
 import br.com.domain.Fabricante;
+import br.com.domain.Pessoa;
 
 public class EstadoDAOTest {
 	
@@ -93,18 +100,20 @@ public class EstadoDAOTest {
 	
 	@Test
 	@Ignore
-	public void salvarCidade(){
+	public void salvarCidade() throws ParseException{
 		
-		CidadeDAO cidadeDAO = new CidadeDAO();
-		Cidade cidade = new Cidade();
-		EstadoDAO estadoDAO = new EstadoDAO();
-		Estado estado = new Estado();
+		ClienteDAO clienteDAO = new ClienteDAO();
+		Cliente cliente = new Cliente();
+		PessoaDAO pessoaDAO = new PessoaDAO();
+		Pessoa pessoa = new Pessoa();
 		
-		estado = estadoDAO.buscar(6l);
-		cidade.setNome("Gramado");
-		cidade.setEstado(estado);
+		pessoa = pessoaDAO.buscar(1l);
+		cliente.setDataDoCadastro(new SimpleDateFormat("dd/MM/yyyy").parse("29/07/2023"));
+		cliente.setLiberado(false);
+		cliente.setPessoa(pessoa);
 		
-		cidadeDAO.salvar(cidade);
+		clienteDAO.merge(cliente);
+		
 		
 	}
 	
