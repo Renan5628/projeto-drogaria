@@ -54,6 +54,30 @@ public class Usuario extends GenericDomain {
 		this.pessoa = pessoa;
 	}
 	
+	public String getTipoFormatado() {
+		
+		String tipoFormatado = null;
+		
+		if(tipo == 'A'){
+			tipoFormatado = "Administrador";
+		}else if(tipo == 'G'){
+			tipoFormatado = "Gerente";
+		}else{
+			tipoFormatado = "Balconista";
+		}
+		return tipoFormatado;
+	}
+
+	public String getAtivoFormatado() {
+		String ativoFormatado = "Não";
+		
+		if(ativo){
+			ativoFormatado = "Sim";
+		}
+		
+		return ativoFormatado;
+	}
+	
 	
 	
 }
