@@ -28,7 +28,7 @@ public class FabricanteService {
 	
 	@GET
 	@Path("{codigo}")
-	public String buscar(@PathParam("codigo") Long codigo){
+	public String buscar(@PathParam("codigo")  Long codigo){
 		FabricanteDAO fabricanteDAO = new FabricanteDAO();
 		Fabricante fabricante = fabricanteDAO.buscar(codigo);
 		
