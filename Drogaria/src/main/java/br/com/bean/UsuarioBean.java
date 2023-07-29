@@ -10,11 +10,8 @@ import javax.faces.event.ActionEvent;
 
 import org.omnifaces.util.Messages;
 
-import br.com.dao.CidadeDAO;
-import br.com.dao.EstadoDAO;
 import br.com.dao.PessoaDAO;
 import br.com.dao.UsuarioDAO;
-import br.com.domain.Cidade;
 import br.com.domain.Pessoa;
 import br.com.domain.Usuario;
 

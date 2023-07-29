@@ -12,7 +12,6 @@ import org.omnifaces.util.Messages;
 
 import br.com.dao.FabricanteDAO;
 import br.com.dao.ProdutoDAO;
-import br.com.domain.Estado;
 import br.com.domain.Fabricante;
 import br.com.domain.Produto;
 
