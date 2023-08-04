@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 @SuppressWarnings("serial")
 @Entity
@@ -54,6 +55,17 @@ public class Produto extends GenericDomain {
 
 	public void setFabricante(Fabricante fabricante) {
 		this.fabricante = fabricante;
+	}
+	
+	@Transient
+	private String caminho;
+	
+	public String getCaminho() {
+		return caminho;
+	}
+	
+	public void setCaminho(String caminho) {
+		this.caminho = caminho;
 	}
 
 }

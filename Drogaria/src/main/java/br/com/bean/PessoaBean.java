@@ -17,6 +17,7 @@ import br.com.dao.PessoaDAO;
 import br.com.domain.Cidade;
 import br.com.domain.Estado;
 import br.com.domain.Pessoa;
+import br.com.domain.Produto;
 
 @SuppressWarnings("serial")
 @ManagedBean
@@ -96,6 +97,24 @@ public class PessoaBean implements Serializable {
 	}
 
 	public void editar(ActionEvent evento) {
+	
+		try {
+			pessoa = (Pessoa) evento.getComponent().getAttributes().get("pessoaSelecionada");
+			
+			estado = pessoa.getCidade().getEstado();
+			
+			EstadoDAO estadoDAO = new EstadoDAO();
+			estados = estadoDAO.listar("nome");
+			
+			CidadeDAO cidadeDAO = new CidadeDAO();
+			cidades = cidadeDAO.buscarPorEstado(estado.getCodigo());
+			
+			
+
+		} catch (RuntimeException erro) {
+			Messages.addGlobalError("Ocorreu um erro ao tentar gerar uma nova pessoa");
+			erro.printStackTrace();
+		}
 
 	}
 
@@ -105,7 +124,16 @@ public class PessoaBean implements Serializable {
 			PessoaDAO pessoaDAO = new PessoaDAO();
 			pessoaDAO.merge(pessoa);
 			pessoas = pessoaDAO.listar("nome");
-			novo();
+
+			pessoa = new Pessoa();
+			estado = new Estado();
+			
+			EstadoDAO estadoDAO = new EstadoDAO();
+			estados = estadoDAO.listar("nome");
+
+			cidades = new ArrayList<Cidade>();
+			
+			Messages.addGlobalInfo("Pessoa salva com sucesso!");
 			
 		} catch (RuntimeException erro) {
 			Messages.addGlobalError("Ocorreu um erro ao tentar gerar uma nova pessoa");
