@@ -145,15 +145,18 @@ public class GenericDAO<E> {
 		
 	}
 	
-	public void merge(E entity){
+	@SuppressWarnings("unchecked")
+	public E merge(E entity){
 		
 		Session sessao = HibernateUtil.getFabricaSessoes().openSession();
 		Transaction transaction = null;
 		
 		try {
 			transaction = sessao.beginTransaction();
-			sessao.merge(entity);
+			 E retorno = (E) sessao.merge(entity);
 			transaction.commit();
+			
+			return retorno;
 			
 		} catch (RuntimeException e) {
 			 if(transaction != null){
