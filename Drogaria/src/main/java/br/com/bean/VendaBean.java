@@ -170,6 +170,8 @@ public class VendaBean implements Serializable {
 		try {
 			
 			venda.setHorario(new Date());
+			venda.setFuncionario(null); 
+			venda.setCliente(null);
 			
 			FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
 			funcionarios = funcionarioDAO.listarOrdenado();
@@ -194,6 +196,8 @@ public class VendaBean implements Serializable {
 			
 			VendaDAO vendaDAO = new VendaDAO();
 			vendaDAO.salvar(venda, itensVenda);
+			
+			novo();
 			
 			Messages.addGlobalInfo("Venda realizada com sucesso!");
 			

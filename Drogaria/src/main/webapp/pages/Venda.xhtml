@@ -139,7 +139,7 @@
 			</h:panelGrid>
 
 			<h:panelGrid columns="2">
-				<p:commandButton value="Salvar" update=":mensagem" oncomplete="PF('dialogo').hide();" actionListener="#{vendaBean.salvar}"/>
+				<p:commandButton value="Salvar" update=":mensagem :formulario:tabelaProduto :formulario:tabelaCesta :formulario:painelFinalizacao" oncomplete="PF('dialogo').hide();" actionListener="#{vendaBean.salvar}"/>
 				<p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();" />
 			</h:panelGrid>
 		</h:form>
