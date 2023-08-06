@@ -3,6 +3,7 @@ package br.com.bean;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -15,6 +16,7 @@ import org.omnifaces.util.Messages;
 import br.com.dao.ClienteDAO;
 import br.com.dao.FuncionarioDAO;
 import br.com.dao.ProdutoDAO;
+import br.com.dao.VendaDAO;
 import br.com.domain.Cliente;
 import br.com.domain.Funcionario;
 import br.com.domain.ItemVenda;
@@ -31,6 +33,7 @@ public class VendaBean implements Serializable {
 	private List<ItemVenda> itensVenda;
 	private List<Cliente> clientes;
 	private List<Funcionario> funcionarios;
+	private Funcionario funcionario;
 	private Venda venda;
 	
 	
@@ -74,6 +77,14 @@ public class VendaBean implements Serializable {
 
 	public void setFuncionarios(List<Funcionario> funcionarios) {
 		this.funcionarios = funcionarios;
+	}
+	
+	public Funcionario getFuncionario() {
+		return funcionario;
+	}
+	
+	public void setFuncionario(Funcionario funcionario) {
+		this.funcionario = funcionario;
 	}
 
 	
@@ -157,6 +168,9 @@ public class VendaBean implements Serializable {
 	
 	public void finalizar(){
 		try {
+			
+			venda.setHorario(new Date());
+			
 			FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
 			funcionarios = funcionarioDAO.listarOrdenado();
 			
@@ -168,6 +182,26 @@ public class VendaBean implements Serializable {
 			Messages.addGlobalError("Ocorreu um erro ao finalizar a venda.");
 			e.printStackTrace();
 		}
+	}
+	
+	public void salvar(){
+	
+		try {
+			if (venda.getPrecoTotal().signum() == 0) {
+				Messages.addGlobalError("Informe pelo menos um item para venda. ");
+				return;
+			}
+			
+			VendaDAO vendaDAO = new VendaDAO();
+			vendaDAO.salvar(venda, itensVenda);
+			
+			Messages.addGlobalInfo("Venda realizada com sucesso!");
+			
+		} catch (Exception e) {
+			Messages.addGlobalError("Ocorreu um erro ao tentar salvar a venda.");
+			e.printStackTrace();
+		}
+		
 	}
 	
 

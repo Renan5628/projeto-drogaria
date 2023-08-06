@@ -1,5 +1,6 @@
 package br.com.util;
 
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -12,13 +13,19 @@ import br.com.dao.ClienteDAO;
 import br.com.dao.EstadoDAO;
 import br.com.dao.FabricanteDAO;
 import br.com.dao.FuncionarioDAO;
+import br.com.dao.ItemVendaDAO;
 import br.com.dao.PessoaDAO;
+import br.com.dao.ProdutoDAO;
+import br.com.dao.VendaDAO;
 import br.com.domain.Cidade;
 import br.com.domain.Cliente;
 import br.com.domain.Estado;
 import br.com.domain.Fabricante;
 import br.com.domain.Funcionario;
+import br.com.domain.ItemVenda;
 import br.com.domain.Pessoa;
+import br.com.domain.Produto;
+import br.com.domain.Venda;
 
 public class EstadoDAOTest {
 
@@ -191,6 +198,56 @@ public class EstadoDAOTest {
 
 		fabricanteDAO.merge(fabricante);
 
+	}
+	
+	@SuppressWarnings("unused")
+	@Test
+	@Ignore
+	public void salvarVenda() throws ParseException{
+		
+		Venda venda = new Venda();
+		VendaDAO vendaDAO = new VendaDAO();
+		Cliente cliente = new Cliente();
+		ClienteDAO clienteDAO = new ClienteDAO();
+		FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
+		Funcionario funcionario = new Funcionario();
+		
+		
+	    venda.setCliente(clienteDAO.buscar(2l));
+	    venda.setCodigo(1l);
+	    venda.setFuncionario(funcionarioDAO.buscar(2l));
+	    venda.setHorario(new SimpleDateFormat("dd/MM/yyyy").parse("29/05/2023"));
+	    venda.setPrecoTotal(new BigDecimal("00.00"));
+	    
+	    vendaDAO.salvar(venda);
+		
+		
+	}
+	
+	@SuppressWarnings("unused")
+	@Test
+	@Ignore
+	public void itemVenda(){
+		
+		ItemVenda itemVenda = new ItemVenda();
+		ItemVendaDAO itemVendaDAO = new ItemVendaDAO();
+		FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
+		Funcionario funcionario = new Funcionario();
+		Venda venda = new Venda();
+		VendaDAO vendaDAO = new VendaDAO();
+		Produto produto = new Produto();
+		ProdutoDAO produtoDAO = new ProdutoDAO();
+		
+		itemVenda.setCodigo(1l);
+		itemVenda.setPrecoParcial(new BigDecimal("00.00"));
+		itemVenda.setProduto(produtoDAO.buscar(5l));
+		itemVenda.setQuantidade((short) '1');
+		itemVenda.setVenda(vendaDAO.buscar(1l));
+		
+		itemVendaDAO.salvar(itemVenda);
+		
+		
+		
 	}
 
 }

@@ -17,7 +17,6 @@ import br.com.dao.PessoaDAO;
 import br.com.domain.Cidade;
 import br.com.domain.Estado;
 import br.com.domain.Pessoa;
-import br.com.domain.Produto;
 
 @SuppressWarnings("serial")
 @ManagedBean
